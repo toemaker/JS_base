@@ -32,42 +32,42 @@
 // console.log(res);
 
 // 4. Присвоить переменной а значение в промежутке[0..15]. С помощью оператора switch организовать вывод чисел от a до 15.
-// var a = perseInt(Math.random() * (15 - 0) + 0);
+// var a = perseInt(Math.random() * (15 - 0) + 0); //Почему-то выдает ошибку в этой строчке. Не могу понять в чем дело.
 
 // console.log(a);
 // switch (a) {
 //     case 0:
-//         console.log(a);
+//         console.log(0);
 //     case 1:
-//         console.log(a);
+//         console.log(1);
 //     case 2:
-//         console.log(a);
+//         console.log(2);
 //     case 3:
-//         console.log(a);
+//         console.log(3);
 //     case 4:
-//         console.log(a);
+//         console.log(4);
 //     case 5:
-//         console.log(a);
+//         console.log(5);
 //     case 6:
-//         console.log(a);
+//         console.log(6);
 //     case 7:
-//         console.log(a);
+//         console.log(7);
 //     case 8:
-//         console.log(a);
+//         console.log(8);
 //     case 9:
-//         console.log(a);
+//         console.log(9);
 //     case 10:
-//         console.log(a);
+//         console.log(10);
 //     case 11:
-//         console.log(a);
+//         console.log(11);
 //     case 12:
-//         console.log(a);
+//         console.log(12);
 //     case 13:
-//         console.log(a);
+//         console.log(13);
 //     case 14:
-//         console.log(a);
+//         console.log(14);
 //     case 15:
-//         console.log(a);
+//         console.log(15);
 //         break;
 // }
 
@@ -82,14 +82,17 @@ function getDif(a, b) {
     return res;
 }
 
-function getWork(a, b) {
+function getMpy(a, b) {
     res = a * b;
     return res;
 }
 
 function getDiv(a, b) {
-    res = a / b;
-    return res;
+    if (b != 0) {
+        res = a / b;
+        return res;
+    }
+    return 0;
 }
 
 
@@ -105,23 +108,50 @@ x = mathOperation(a, b, oper);
 function mathOperation(arg1, arg2, operation) {
     switch (operation) {
         case "+":
-            y = getSum;
+            y = getSum(a, b);
             console.log(y);
             break;
         case "-":
-            y = getDif;
-            console.log(res);
+            y = getDif(a, b);
+            console.log(y);
             break;
         case "*":
-            y = getWork;
-            console.log(res);
+            y = getMpy(a, b);
+            console.log(y);
             break;
         case "/":
-            y = getDiv;
-            console.log(res);
+            y = getDiv(a, b);
+            console.log(y);
+            break;
+        default:
+            alert('Неправильный знак');
             break;
     }
 }
 // 7. * Сравнить null и 0. Попробуйте объяснить результат.
+alert(null > 0); // false
+alert(null == 0); // false
+alert(null >= 0); // true
+
+//В абстрактной проверке на >, < сначала числа сравниваются между собой и если они равны, то будет false. null преобразуется в +0, который равен 0 в данном случае
+//В абстрактном алгоритме проверки на равенство == ни один из сценариев не подходит и возвращается значение по-умолчанию false
+//Алгоритм работы оператора >=. Если null < 0 принимает значение false, то null >= 0 принимает значение true
+
 
 // 8. * С помощью рекурсии организовать функцию возведения числа в степень.Формат: function power(val, pow), где val – заданное число, pow – степень.
+
+var x = +prompt("Число, которое надо возвести в степень");
+var p = +prompt("Степень: ");
+function pow(val, p) {
+    if (p == 1) {
+        return val;
+    }
+    if (p == 0) {
+        return 1;
+    }
+    if (p > 0) {
+        var y = val * pow(val, p - 1);
+        console.log(y);
+        return y;
+    }
+}
