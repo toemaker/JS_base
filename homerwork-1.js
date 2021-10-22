@@ -11,8 +11,9 @@ var x = 10;
 console.log(x);
 var y = 20;
 console.log(y);
-x = x * 2;
-y = y / 2;
+x = x + y;
+y = x - y;
+x = x - y;
 document.write('<h1>x =  ' + x + '</h1>');
 document.write('<h2>y =  ' + y + '</h2>');
 
